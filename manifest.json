@@ -1,0 +1,31 @@
+{
+  "name": "x-heartprint",
+  "description": "auto-screenshot + log after liking tweets on x.com",
+  "version": "0.2.8",
+  "manifest_version": 3,
+  "permissions": [
+    "downloads",
+    "storage",
+    "tabs",
+    "scripting",
+    "unlimitedStorage",
+    "webNavigation",
+    "activeTab"
+  ],
+  "host_permissions": ["<all_urls>"],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_popup": "popup.html", "default_title": "x-heartprint" },
+  "content_scripts": [
+    {
+      "matches": ["https://x.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["injected.js"],
+      "matches": ["https://x.com/*"]
+    }
+  ]
+}
